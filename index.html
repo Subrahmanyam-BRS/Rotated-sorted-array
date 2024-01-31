@@ -39,7 +39,18 @@
       <p class="text-start">
         Since the array is Rotated Sorted array, and we know how to perform binary search on a sorted array. SO let's divide the array into two values and call the left and right. Once we get the two sorted arrays, we can perform a binary search on the two sorted arrays and get find the target in O(long).For an array which is sorted in increasing order, Check if the last element of the array is smaller than the starting element, i.e., 'arr[arr. length-1] < arr[0]' as this would make sure that the array has been rotated at least once.</p>
     
-       
+        <div class="container">
+          <h5>Rotated Sorted Array</h5>
+          <label for="inputArray">Enter Rotated Sorted Array:</label>
+          <input type="text" id="inputArray" placeholder="e.g., 4,5,6,7,0,1,2,3">
+          
+          <label for="inputTarget">Enter Target Value:</label>
+          <input type="text" id="inputTarget" placeholder="e.g., 0">
+      
+         <button type="button" class="btn btn-secondary"  onclick="searchRotatedArray()">Find</button>
+         </div> 
+      
+  
     </main>
 
     <footer class="footer footer-dark">

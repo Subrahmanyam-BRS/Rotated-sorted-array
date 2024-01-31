@@ -1,38 +1,51 @@
-function searchInRotatedArray(arr, target) {
+
+
+function searchRotatedArray() {
+    const inputArray = document.getElementById('inputArray').value;
+    const inputTarget = document.getElementById('inputTarget').value;
+
+    // Convert input string to array
+    const nums = inputArray.split(',').map(num => parseInt(num.trim(), 10));
+    
+    const target = parseInt(inputTarget, 10);
+
+    const result = searchRotatedArrayIndex(nums, target);
+
+    const resultElement = document.getElementById('result');
+
+    if (result !== -1) {
+        resultElement.textContent = 'result: ${result}';
+    } else {
+        resultElement.textContent = 'Target not found in the rotated sorted array.';
+    }
+}
+
+function searchRotatedArrayIndex(nums, target) {
     let left = 0;
-    let right = arr.length - 1;
+    let right = nums.length - 1;
 
     while (left <= right) {
-        let mid = Math.floor((left + right) / 2);
+        const mid = Math.floor((left + right) / 2);
 
-        if (arr[mid] === target) {
+        if (nums[mid] === target) {
             return mid;
         }
 
-        // If the left half is sorted
-        if (arr[left] <= arr[mid]) {
-            // Check if the target is within the left half
-            if (arr[left] <= target && target < arr[mid]) {
-                right = mid - 1; // Search in the left half
+        if (nums[left] <= nums[mid]) {
+            if (nums[left] <= target && target <= nums[mid]) {
+                right = mid - 1;
             } else {
-                left = mid + 1; // Search in the right half
+                left = mid + 1;
             }
-        }
-        // If the right half is sorted
-        else {
-            // Check if the target is within the right half
-            if (arr[mid] < target && target <= arr[right]) {
-                left = mid + 1; // Search in the right half
+
+        } else {
+            if (nums[mid] <= target && target <= nums[right]) {
+                left = mid + 1;
             } else {
-                right = mid - 1; // Search in the left half
+                right = mid - 1;
             }
         }
     }
 
-    return -1; // Element not found
+    return -1; // Target not found
 }
-
-// Example usage:
-const rotatedArray = [3,4, 5, 6, 7, 0, 1, 2];
-const target = 0;
-console.log(searchInRotatedArray(rotatedArray, target)); // Output: 4 (index of target)
